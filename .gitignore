@@ -1,0 +1,33 @@
+# Sensitive local config
+config/api_config.json
+
+# Runtime state
+config/ui_state.json
+config/rules_generated.json
+logs/
+process_archive/
+wesort_*/
+*.tmp
+*.bak
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Build output
+build/
+dist/
+*.egg-info/
+
+# Virtual environments
+.venv/
+venv/
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

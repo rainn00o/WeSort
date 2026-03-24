@@ -1,0 +1,12 @@
+{
+  "provider": "deepseek",
+  "api_key": "",
+  "url": "",
+  "model": "deepseek-chat",
+  "headers_template": "Bearer",
+  "temperature": 0.3,
+  "timeout": 30,
+  "enabled": true,
+  "_comment": "首次运行时，程序会自动生成 api_config.json。请填写你的 API 密钥、地址和模型。"
+}
+
