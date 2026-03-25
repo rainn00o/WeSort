@@ -10,7 +10,6 @@ if not exist ".venv\Scripts\python.exe" (
     exit /b 1
 )
 
-set "WESORT_GUI=qt"
 ".venv\Scripts\python.exe" main.py
 set "EXIT_CODE=%ERRORLEVEL%"
 

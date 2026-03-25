@@ -1,27 +1,16 @@
 from __future__ import annotations
 
-import os
 import sys
 from pathlib import Path
 
 
 def run() -> None:
-    """Launch the WeSort application."""
-    use_qt = os.environ.get("WESORT_GUI", "qt").lower() == "qt"
-    if use_qt:
-        _run_qt()
-        return
-    _run_tkinter()
-
-
-def _run_qt() -> None:
-    """Launch the PyQt6 application."""
+    """Launch the WeSort Qt application."""
     try:
         from PyQt6.QtWidgets import QApplication
     except ImportError as exc:
         raise RuntimeError(
-            "当前分支默认使用 PyQt6 界面，请先安装依赖：pip install -r requirements.txt，"
-            "或设置环境变量 WESORT_GUI=tk 使用 Tk 版本。"
+            "当前分支仅支持 PyQt6 界面，请先安装依赖：pip install -r requirements.txt。"
         ) from exc
 
     from gui_qt.qt_main_window import FileOrganizerMainWindow
@@ -34,10 +23,3 @@ def _run_qt() -> None:
     window = FileOrganizerMainWindow()
     window.show()
     sys.exit(app.exec())
-
-
-def _run_tkinter() -> None:
-    """Launch the Tkinter application."""
-    from gui.main_window import FileOrganizerGUI
-
-    FileOrganizerGUI().run()

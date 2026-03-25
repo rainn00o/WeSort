@@ -1,9 +1,7 @@
 from __future__ import annotations
 
 import sys
-import tkinter as tk
 from pathlib import Path
-from tkinter import messagebox
 
 
 if __package__ in (None, ""):
@@ -17,10 +15,11 @@ def main() -> None:
         run()
     except Exception as exc:
         try:
-            root = tk.Tk()
-            root.withdraw()
-            messagebox.showerror("启动错误", f"程序启动失败: {exc}")
-            root.destroy()
+            from PyQt6.QtWidgets import QApplication, QMessageBox
+
+            app = QApplication.instance() or QApplication([])
+            QMessageBox.critical(None, "启动错误", f"程序启动失败: {exc}")
+            app.quit()
         except Exception:
             print(f"程序启动失败: {exc}", file=sys.stderr)
         sys.exit(1)

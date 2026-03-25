@@ -1,6 +1,22 @@
 # -*- mode: python ; coding: utf-8 -*-
 
 
+def _prune_qt_collect_items(toc):
+    keep_translations = {
+        "PyQt6/Qt6/translations/qt_zh_CN.qm",
+        "PyQt6/Qt6/translations/qtbase_zh_CN.qm",
+        "PyQt6/Qt6/translations/qt_en.qm",
+        "PyQt6/Qt6/translations/qtbase_en.qm",
+    }
+    pruned = []
+    for entry in toc:
+        dest_name = entry[0].replace("\\", "/")
+        if dest_name.startswith("PyQt6/Qt6/translations/") and dest_name not in keep_translations:
+            continue
+        pruned.append(entry)
+    return pruned
+
+
 a = Analysis(
     ['main.py'],
     pathex=[],
@@ -15,10 +31,12 @@ a = Analysis(
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
-    excludes=[],
+    excludes=['tkinter', '_tkinter'],
     noarchive=False,
     optimize=0,
 )
+a.datas = _prune_qt_collect_items(a.datas)
+a.binaries = _prune_qt_collect_items(a.binaries)
 pyz = PYZ(a.pure)
 
 exe = EXE(
