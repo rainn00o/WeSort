@@ -9,6 +9,7 @@ a = Analysis(
         ('config/rules.json', 'config'),
         ('config/api_config.json', 'config'),
         ('config/api_config.json.template', 'config'),
+        ('gui/styles/modern_theme.qss', 'gui/styles'),
     ],
     hiddenimports=[],
     hookspath=[],

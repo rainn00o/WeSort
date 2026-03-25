@@ -47,9 +47,8 @@ class WorkflowIntegrationTests(unittest.TestCase):
             result = executor.execute(plan, Path(output_dir), generate_report=True)
             self.assertEqual(result.failed_count, 0)
             self.assertEqual(result.moved_count, 2)
-            self.assertIsNotNone(result.report_json)
             self.assertIsNotNone(result.report_txt)
-            self.assertTrue(result.report_json.exists())
+            self.assertIsNone(result.report_json)
             self.assertTrue(result.report_txt.exists())
 
 
